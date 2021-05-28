@@ -1,5 +1,7 @@
 import base64
 from compression_algorithms.LZW import lzw_compression, lzw_decompression
+import compression_algorithms.DEFLATE as deflate
+from shutil import copyfileobj
 
 
 def compress(path: str, path_compressed: str, function: callable):
@@ -22,6 +24,20 @@ def decompress(path_compressed: str, path_decompressed: str, function: callable)
         file_to_decompress.write(base64.b64decode(decompressed))
 
 
+def deflate_compress(path: str, path_compressed: str):
+    with open(path, 'rb') as input_file:
+        with deflate.open(path_compressed, 'wb') as output_file:
+            copyfileobj(input_file, output_file)
+
+
+def deflate_decompress(path_compressed: str, path_decompressed: str):
+    with open(path_compressed, 'rb') as input_file:
+        content = input_file.read()
+        data = deflate.decompress(content)
+    with open(path_decompressed, 'wb') as output_file:
+        output_file.write(data)
+
+
 if __name__ == '__main__':
     compress(path='example_files/example.mp4',
              path_compressed='example_files/tests_files/example_compressed.mp4.txt',
@@ -29,3 +45,7 @@ if __name__ == '__main__':
     decompress(path_compressed='example_files/tests_files/example_compressed.mp4.txt',
                path_decompressed='example_files/tests_files/example_decompressed.mp4',
                function=lzw_decompression)
+    deflate_compress(path='example_files/example.mp4',
+                     path_compressed='example_files/tests_files/example_inflated.mp4.txt')
+    deflate_decomppress(path_compressed='example_files/tests_files/example_inflated.mp4.txt',
+                        path_decompressed='example_files/tests_files/example_deflated.mp4')
