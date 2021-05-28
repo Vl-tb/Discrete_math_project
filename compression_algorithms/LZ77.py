@@ -1,5 +1,5 @@
 """CODING IN PROGRESS"""
 def some_func():
     while True:
-      do smth
+      # do smth
       break
