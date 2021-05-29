@@ -1,6 +1,7 @@
 import base64
 from compression_algorithms.LZW import lzw_compression, lzw_decompression
-import compression_algorithms.DEFLATE as def
+import compression_algorithms.DEFLATE as deflate
+from compression_algorithms.LZ77 import compress_message, decompress_message
 
 
 def compress(path: str, path_compressed: str, function: callable):
@@ -24,15 +25,17 @@ def decompress(path_compressed: str, path_decompressed: str, function: callable)
 
 
 if __name__ == '__main__':
+    print("-------")
     compress(path='example_files/example.mp4',
              path_compressed='example_files/tests_files/example_compressed.mp4.txt',
-             function=lzw_compression)
+             function=compress_message)
+    print("!!!!!!")
     decompress(path_compressed='example_files/tests_files/example_compressed.mp4.txt',
                path_decompressed='example_files/tests_files/example_decompressed.mp4',
-               function=lzw_decompression)
-    compress(path='example_files/example.mp4',
-             path_compressed='example_files/tests_files/example_compressed.mp4.txt',
-             function=def.inflate)
-    decompress(path_compressed='example_files/tests_files/example_compressed.mp4.txt',
-               path_decompressed='example_files/tests_files/example_decompressed.mp4',
-               function=def.deflate)
+               function=decompress_message)
+    # compress(path='example_files/example.mp4',
+    #          path_compressed='example_files/tests_files/example_compressed.mp4.txt',
+    #          function=deflate.inflate)
+    # decompress(path_compressed='example_files/tests_files/example_compressed.mp4.txt',
+    #            path_decompressed='example_files/tests_files/example_decompressed.mp4',
+    #            function=deflate.deflate)
