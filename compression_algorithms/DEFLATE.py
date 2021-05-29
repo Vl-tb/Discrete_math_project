@@ -3,6 +3,7 @@ import zlib, io, _compression, builtins
 
 
 def inflate(data: str):
+    """A.K.A. compression"""
     data = data.encode("UTF-8")
     with process("temp_file.txt", "wb") as temp_file:
         temp_file.write(data)
@@ -12,6 +13,7 @@ def inflate(data: str):
 
 
 def deflate(data):
+    """A.K.A. decompression"""
     with process("temp_file.txt", 'rb') as temp_file:
         info = temp_file.read()
     os.remove("temp_file.txt")
