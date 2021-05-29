@@ -30,9 +30,9 @@ if __name__ == '__main__':
     decompress(path_compressed='example_files/tests_files/example_compressed.mp4.txt',
                path_decompressed='example_files/tests_files/example_decompressed.mp4',
                function=lzw_decompression)
-    compress(path='example.mp4',
-             path_compressed='example_compressed.txt',
+    compress(path='example_files/example.mp4',
+             path_compressed='example_files/tests_files/example_compressed.mp4.txt',
              function=def.inflate)
-    decompress(path_compressed='example_compressed.txt',
-               path_decompressed='example_new.mp4',
+    decompress(path_compressed='example_files/tests_files/example_compressed.mp4.txt',
+               path_decompressed='example_files/tests_files/example_decompressed.mp4',
                function=def.deflate)
