@@ -33,9 +33,11 @@ if __name__ == '__main__':
     decompress(path_compressed='example_files/tests_files/example_compressed.mp4.txt',
                path_decompressed='example_files/tests_files/example_decompressed.mp4',
                function=decompress_message)
+    print("-------")
     compress(path='example_files/example.mp4',
              path_compressed='example_files/tests_files/example_compressed.mp4.txt',
              function=inflate)
+    print("!!!!!!")
     decompress(path_compressed='example_files/tests_files/example_compressed.mp4.txt',
                path_decompressed='example_files/tests_files/example_decompressed.mp4',
                function=deflate,
