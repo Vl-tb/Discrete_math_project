@@ -1,4 +1,5 @@
-import os, zlib, io, _compression, builtins, struct, time
+import struct, os, time
+import zlib, io, _compression, builtins
 
 
 def inflate(data: str):
@@ -427,15 +428,3 @@ class _GzipReader(_compression.DecompressReader):
     def _rewind(self):
         super()._rewind()
         self._new_member = True
-
-def compress(data, compresslevel=9, *, mtime=None):
-    """Final compression"""
-    buf = io.BytesIO()
-    with GzipFile(fileobj=buf, mode='wb', compresslevel=compresslevel, mtime=mtime) as f:
-        f.write(data)
-    return buf.getvalue()
-
-def decompress(data):
-    """Final decompression"""
-    with GzipFile(fileobj=io.BytesIO(data)) as f:
-        return f.read()
