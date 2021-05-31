@@ -1,6 +1,6 @@
 import base64
 from compression_algorithms.LZW import lzw_compression, lzw_decompression
-from compression_algorithms.DEFLATE import inflate, deflate
+from compression_algorithms.DEFLATE import deflate, inflate
 from compression_algorithms.LZ77 import compress_message, decompress_message
 
 
@@ -36,9 +36,9 @@ if __name__ == '__main__':
     print("-------")
     compress(path='example_files/example.mp4',
              path_compressed='example_files/tests_files/example_compressed.mp4.txt',
-             function=inflate)
+             function=deflate)
     print("!!!!!!")
     decompress(path_compressed='example_files/tests_files/example_compressed.mp4.txt',
                path_decompressed='example_files/tests_files/example_decompressed.mp4',
-               function=deflate,
+               function=inflate,
                mode='rb')
