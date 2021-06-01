@@ -1,4 +1,6 @@
 import base64
+import heapq
+from heapq import heappop, heappush
 
 
 def deflate(data: str):
@@ -11,10 +13,6 @@ def inflate(data: bytes):
     decompressed = zlib.decompress(data)
     result = decompressed.decode("UTF-8")
     return result
-
-
-import heapq
-from heapq import heappop, heappush
 
 
 # HUFFMAN PART
