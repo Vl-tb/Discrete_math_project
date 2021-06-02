@@ -145,6 +145,6 @@ Using Huffman's coding and LZ77 decodes data.
 
 MIT License
 
-Copyright (c) 2021 Vl-tb
+Copyright (c) 2021 Vladyslav Protsenko
 
 ***
