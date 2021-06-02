@@ -5,17 +5,17 @@ We made up a program, which can use different algorithms for compression and dec
 
 
 # Table of contents
-#### [Discrete Math Project](https://github.com/Vl-tb/Discrete_math_project/blob/main/README.md#discrete-math-project)
+#### [Discrete Math Project](#discrete-math-project)
 
-#### [Table of contents](https://github.com/Vl-tb/Discrete_math_project/blob/main/README.md#table-of-contents)
+#### [Table of contents](#table-of-contents)
 
-#### [Input and output](https://github.com/Vl-tb/Discrete_math_project/blob/main/README.md#input-and-output)
+#### [Input and output](#input-and-output)
 
-#### [Program structure](https://github.com/Vl-tb/Discrete_math_project/blob/main/README.md#program-structure)
+#### [Program structure](#program-structure)
 
-#### [Usage](https://github.com/Vl-tb/Discrete_math_project/blob/main/README.md#usage)
+#### [Usage](#usage)
 
-#### [Licence](https://github.com/Vl-tb/Discrete_math_project/blob/main/README.md#licence)
+#### [Licence](#licence)
 
 ***
 
