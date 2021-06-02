@@ -142,10 +142,6 @@ Using Huffman's coding and LZ77 decodes data.
 
 
 # Licence
-Information for players provided by:
-* https://csgostats.gg/
-* https://steamcommunity.com/'
-
 
 MIT License
 
