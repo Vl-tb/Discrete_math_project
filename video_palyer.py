@@ -1,3 +1,6 @@
+"""
+Simple video player. (Without sound)
+"""
 import cv2
 import time
 
