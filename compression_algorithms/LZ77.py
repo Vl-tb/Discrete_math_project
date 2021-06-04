@@ -1,3 +1,4 @@
+""" Implementation of LZ77 compression algrorithm """
 
 
 def compress_message(src):
@@ -8,29 +9,35 @@ def compress_message(src):
     packed_message = ''
 
     run_idx = 0
+    main_len = len(src)
+    cache = {}
 
     while run_idx < len(src):
-        ln = 9
+        length = min(256, main_len-run_idx)
         found = False
 
-        while not found and ln > 3:
-            copy_idx =  run_idx - ln
-
-            while copy_idx >= 0 and (run_idx-copy_idx) < 100:
-                if src[run_idx: run_idx+ln] == src[copy_idx:copy_idx+ln]:
-                    packed_message += f"#{ln}{run_idx-copy_idx}#"
-                    run_idx += ln
+        while not found and length > 4:
+            copy_idx = run_idx - length
+            message = src[run_idx:run_idx + length]
+            try:
+                copy_idx = cache[message]
+                if copy_idx + length < run_idx:
+                    packed_message += f"#{length},{run_idx - copy_idx}#"
+                    run_idx += length
                     found = True
                     break
-
-                copy_idx -= 1
-            ln -= 1
+                else:
+                    length -= 1
+            except KeyError:
+                cache[message] = run_idx
+                length -= 1
 
         if not found:
             packed_message += src[run_idx]
             run_idx += 1
 
     return packed_message
+
 
 def decompress_message(encoded_message):
     """
@@ -48,13 +55,21 @@ def decompress_message(encoded_message):
             i_unpack += 1
             i_pack += 1
             continue
-        length = int(encoded_message[i_pack+1])
-        count = 3
-        while encoded_message[i_pack+count] != '#':
+
+        count = 1
+
+        while encoded_message[i_pack + count] != ',':
             count += 1
-        distance = int(encoded_message[i_pack+2:i_pack+count])
-        unpack += unpack[i_unpack-distance:i_unpack-distance+length]
+        length = int(encoded_message[i_pack + 1:i_pack + count])
+
+        count += 1
+        count_ex = count
+
+        while encoded_message[i_pack + count] != '#':
+            count += 1
+        distance = int(encoded_message[i_pack + count_ex:i_pack + count])
+        unpack += unpack[i_unpack - distance:i_unpack - distance + length]
         i_unpack += length
-        i_pack += count+1
+        i_pack += count + 1
 
     return unpack

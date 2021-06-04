@@ -135,6 +135,7 @@ class Huffman_algorithm():
         self.frequency = []
         self.tree_construtor = []
         self.dictionary = {}
+        self.encode = None
 
     def set_data(self, data):
         """
@@ -177,7 +178,8 @@ class Huffman_algorithm():
         """
         Creates a Huffman-tree, what is actually the binary-tree.
         """
-        self.set_frequency_list()
+        if self.frequency == []:
+            self.set_frequency_list()
         tree = Tree()
         for char_freq in self.frequency:
             node = Node(char_freq)
