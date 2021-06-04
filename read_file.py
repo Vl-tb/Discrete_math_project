@@ -1,7 +1,7 @@
 import base64
 from compression_algorithms.LZW import lzw_compression, lzw_decompression
 # from compression_algorithms.DEFLATE import deflate, inflate
-from compression_algorithms.LZ77 import compress_message, decompress_message
+from compression_algorithms.LZ77 import lz77_compression, lz77_decompression
 
 
 def compress(path: str, path_compressed: str, function: callable):
@@ -10,6 +10,7 @@ def compress(path: str, path_compressed: str, function: callable):
         string = ''
         for bit in bits:
             string += chr(bit)
+    print(len(string))
 
     compressed = function(string)
     with open(path_compressed, 'w') as compressed_file:
@@ -26,13 +27,13 @@ def decompress(path_compressed: str, path_decompressed: str, function: callable)
 
 if __name__ == '__main__':
     print("-------")
-    compress(path='example_files/deflate.png',
-             path_compressed='example_files/tests_files/deflate.png.txt',
-             function=compress_message)
+    compress(path='example_files/Norah.raw',
+             path_compressed='example_files/tests_files/Norah.raw.txt',
+             function=lz77_compression)
     print("!!!!!!")
-    decompress(path_compressed='example_files/tests_files/deflate.png.txt',
-               path_decompressed='example_files/tests_files/deflate.png',
-               function=decompress_message)
+    decompress(path_compressed='example_files/tests_files/Norah.raw.txt',
+               path_decompressed='example_files/tests_files/Norah.raw',
+               function=lz77_decompression)
     # print("-------")
     # compress(path='example_files/example.mp4',
     #          path_compressed='example_files/tests_files/example_compressed.mp4.txt',

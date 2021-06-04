@@ -2,7 +2,7 @@
 This module contains realisation of Huffman encoding/decoding algorithm.
 """
 
-class Node():
+class Node:
     """
     This class represents a node for binary tree.
     """
@@ -45,7 +45,7 @@ class Node():
         return f"{self.value}"
 
 
-class Tree():
+class Tree:
     """
     This class represents binary tree.
     """
@@ -125,12 +125,12 @@ class Tree():
         return
 
 
-class Huffman_algorithm():
+class HuffmanAlgorithm:
     """
     This class can encode and decode files
     due to Huffman algorithm, based on using binary tree.
     """
-    def __init__(self, data):
+    def __init__(self, data=''):
         self.data = data
         self.frequency = []
         self.tree_construtor = []

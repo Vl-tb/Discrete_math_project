@@ -36,7 +36,7 @@ def lzw_compression(string) -> str:
     return ' '.join(compressed_im)
 
 
-def lzw_decompression(compressed_photo_str: str) -> object:
+def lzw_decompression(compressed_photo_str: str) -> str:
     """
     Reproduction of an file that has been compressed using
     the Lempel-Ziv-Welch (LZW) algorithm.

@@ -1,24 +1,27 @@
 from LZ77 import compress_message, decompress_message
-from HUFFMAN import Huffman_algorithm
+from HUFFMAN import HuffmanAlgorithm
 
-def deflate_message(src):
+
+
+def deflate_compress(src):
     """
     Encode the message accordingly to the deflate using
     LZ77 and Huffman algorithm
     """
     lz77_en = compress_message(src)
-    huff_comp = Huffman_algorithm(lz77_en)
+    huff_comp = HuffmanAlgorithm(lz77_en)
     deflated = huff_comp.encoding()
 
-    return (deflated, str(huff_comp.frequency))
+    return deflated + chr(0) + str(huff_comp.frequency)
 
 
-def inflate_message(encoded_message, huff_tree_str):
+def deflate_decompress(encoded_string):
     """
     Decode the message accordingly to the deflate using
     LZ77 and Huffman algorithm
     """
-    exmp = Huffman_algorithm('')
+    encoded_message, huff_tree_str = encoded_string.split(chr(0))
+    exmp = HuffmanAlgorithm()
     exmp.frequency = eval(huff_tree_str)
     exmp.binary_tree()
     exmp.set_dictionary()
@@ -26,3 +29,11 @@ def inflate_message(encoded_message, huff_tree_str):
     lz77_en = exmp.decoding()
     inflated = decompress_message(lz77_en)
     return inflated
+
+
+if __name__ == '__main__':
+    message = 'fouugfhufhgjofhgjgohfokgjrpjgfojrhjfpowof  ddjgfjoierjgfgfiejrigjerihjgj foprkfokropfkok hpehplpl hlehleplhpeh'
+
+    code = deflate_message(message)
+
+    print(message == inflate_message(code))
