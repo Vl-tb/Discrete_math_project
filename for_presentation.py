@@ -5,7 +5,6 @@ from ffpyplayer.player import MediaPlayer
 
 
 # LZ78 CODING
-
 def lz78_compression(string):
     new_dict = {}
     dictionary = {}
