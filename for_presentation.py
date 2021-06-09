@@ -1,9 +1,6 @@
-import heapq
-import os
 import base64
 from io import StringIO
 import cv2
-import numpy as np
 from ffpyplayer.player import MediaPlayer
 
 
@@ -523,7 +520,8 @@ def main():
                 for bit in bits:
                     string += chr(bit)
             huff_comp = HuffmanAlgorithm(string)
-            compressed = huff_comp.encoding()
+            deflated = huff_comp.encoding()
+            compressed = deflated + chr(0) + str(huff_comp.frequency)
             with open(answer_3, 'w') as compressed_file:
                 compressed_file.write(compressed)
 
@@ -558,8 +556,8 @@ def main():
             print("Give this new file a name:")
             answer_3 = input()
             with open(answer_1, 'r') as compressed_file:
-                data = compressed_file.read()
-            encoded_message, huff_tree_str = data.split(chr(0))
+                encoded_string = compressed_file.read()
+            encoded_message, huff_tree_str = encoded_string.split(chr(0))
             exmp = HuffmanAlgorithm()
             exmp.frequency = eval(huff_tree_str)
             exmp.binary_tree()
